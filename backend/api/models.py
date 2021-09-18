@@ -1,6 +1,7 @@
 from . import db 
 
-class Movie(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50))
-    rating = db.Column(db.Integer)
+class Summoner(db.Model):
+    player_id = db.Column(db.String(100), primary_key=True)
+    summoner_name = db.Column(db.String(20))
+    region = db.Column(db.String(10))
+    
