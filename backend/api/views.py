@@ -15,7 +15,7 @@ def add_movie():
 
     return 'Done', 201
 
-@main.route('/movies')
+@main.route('/movies', methods=['GET'])
 def movies():
     movie_list = Movie.query.all()
     movies = []
@@ -23,4 +23,6 @@ def movies():
     for movie in movie_list:
         movies.append({'title' : movie.title, 'rating' : movie.rating})
 
-    return jsonify({'movies' : movies})
+    response = jsonify({'movies' : movies})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
