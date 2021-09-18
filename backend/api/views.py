@@ -9,13 +9,13 @@ def add_movie():
     movie_data = request.get_json()
 
     new_movie = Movie(title=movie_data['title'], rating=movie_data['rating'])
-
+    
     db.session.add(new_movie)
     db.session.commit()
 
     return 'Done', 201
 
-@main.route('/movies', methods=['GET'])
+@main.route('/movies')
 def movies():
     movie_list = Movie.query.all()
     movies = []
