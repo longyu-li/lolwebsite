@@ -1,0 +1,11 @@
+
+python backend servers
+flask or jango
+
+then learn how to call riot api
+
+react framework for frontend 
+
+charts and graphs need extra work
+
+maybe try hosting
