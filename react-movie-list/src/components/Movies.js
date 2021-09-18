@@ -1,14 +1,14 @@
 import React from "react";
 import { List, Header, Rating } from "semantic-ui-react";
 
-export const Movies = ({ movies }) => {
+export const Players = ({ players }) => {
   return (
     <List>
-      {movies.map(movie => {
+      {players.map(player => {
         return (
-          <List.Item key={movie.title}>
-            <Header>{movie.title}</Header>
-            <Rating rating={movie.rating} maxRating={5} disabled />
+          <List.Item key={player.player_id}>
+            <Header>{player.summoner_name}</Header>
+            <Rating rating={player.games_played} maxRating={30} disabled />
           </List.Item>
         );
       })}
