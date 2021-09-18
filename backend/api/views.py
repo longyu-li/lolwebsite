@@ -4,6 +4,16 @@ from .models import Movie
 
 main = Blueprint('main', __name__)
 
+@main.route('/del_movie', methods=['POST'])
+def del_movie():
+    movie_data = request.get_json()
+    target_movie = Movie(title=movie_data['title'])
+
+    db.session.delete(target_movie)
+    db.session.commit()
+
+    return 'Deleted', 201
+
 @main.route('/add_movie', methods=['POST'])
 def add_movie():
     movie_data = request.get_json()
