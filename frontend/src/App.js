@@ -82,10 +82,10 @@ function App() {
     var entries = data.data.to_return.length
     var i = 0
     var paragraph = document.getElementById("spam_and_fun")
-    paragraph.innterText = ""
+    paragraph.innerText = ""
     while (i < entries) {
       console.log(data.data.to_return[i])
-      paragraph.innterText += ('\n' + data.data.to_return[i] + '\n')
+      paragraph.innerText += ('\n' + data.data.to_return[i] + '\n')
 
       i++
     }
@@ -98,10 +98,15 @@ function App() {
     <h1>
 
     
+       
+
+
+    
     <Form onSubmit={handle_submit}
     class="ui_form">
       <Form.Field>
         <Input 
+          
           type="text"
           placeholder="search a name"
           id="search_name"
@@ -112,6 +117,7 @@ function App() {
       <FormDropdown
         options={region_options}
         id="region_selection"
+        margin='30px'
         onChange= {(region,{value})=>
           set_region(value)}
 
@@ -128,10 +134,11 @@ function App() {
     </Form.Field>
     </Form>
       <body>
-        <p id="spam_and_fun">
+        <p id="spam_and_fun" >
 
         </p>
       </body>
+      
     </h1>
     
 

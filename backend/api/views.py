@@ -127,16 +127,15 @@ regions = {"na1": "americas", "br1": "americas", "la1": "americas", "la2": "amer
 
 
 def run_api(summoner_name: str, region: str) -> List[Player]:
-    
+    print("retrieving player id")
     pid = get_player_id(summoner_name, region, APIKEY)
-    print("PRINT a")
+    print("finding matches")
     matches = get_recent_matches(pid, regions[region], 10, APIKEY)
-    print("PRINT 1")
+    print("checking players")
     recent_players = list(filter(lambda x: x.get_total_games_played() > 1,
                                  get_recent_players(pid, matches, regions[region], APIKEY).values()))
-    print("PRINT 2")
     recent_players.sort(reverse=True, key=lambda player: player.get_total_games_played())
-    print("PRINT 3")
+    print("done")
     return recent_players
 
 
