@@ -1,38 +1,13 @@
 from flask import Blueprint, jsonify, request
+#from sqlalchemy.ext.declarative.api import as_declarative
 from . import db 
-from .models import Movie
+from .models import Summoner
+from flask_cors import CORS
+import apimain
 
 main = Blueprint('main', __name__)
 
-@main.route('/del_movie', methods=['POST'])
-def del_movie():
-    movie_data = request.get_json()
-    target_movie = Movie(title=movie_data['title'])
-
-    db.session.delete(target_movie)
-    db.session.commit()
-
-    return 'Deleted', 201
-
-@main.route('/add_movie', methods=['POST'])
-def add_movie():
-    movie_data = request.get_json()
-
-    new_movie = Movie(title=movie_data['title'], rating=movie_data['rating'])
+@main.route('/<input_region>/<input_name>')
+def search(input_region, input_name):
     
-    db.session.add(new_movie)
-    db.session.commit()
-
-    return 'Done', 201
-
-@main.route('/movies')
-def movies():
-    movie_list = Movie.query.all()
-    movies = []
-
-    for movie in movie_list:
-        movies.append({'title' : movie.title, 'rating' : movie.rating})
-
-    response = jsonify({'movies' : movies})
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    return run_api(input_name, input_region), 201
