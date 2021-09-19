@@ -20,9 +20,6 @@ def run_api(summoner_name: str, region: str) -> List[Player]:
         db.session.add(new_summoner)
         db.session.commit    
 
-    return pid    
-    
-
 
     matches = usermanager.get_recent_matches(pid, regions[region], 10, APIKEY)
     recent_players = list(filter(lambda x: x.get_total_games_played() > 1,
