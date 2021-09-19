@@ -1,3 +1,4 @@
+
 from typing import List
 
 import usermanager
@@ -11,7 +12,6 @@ regions = {"na1": "americas", "br1": "americas", "la1": "americas", "la2": "amer
 
 
 def run_api(summoner_name: str, region: str) -> List[Player]:
-    load_dotenv()
     
     pid = Summoner.query.filter_by(summoner_name='summoner_name').first().player_id
     if (pid is None) :
@@ -22,7 +22,7 @@ def run_api(summoner_name: str, region: str) -> List[Player]:
 
     return pid    
     
-"""
+
 
     matches = usermanager.get_recent_matches(pid, regions[region], 10, APIKEY)
     recent_players = list(filter(lambda x: x.get_total_games_played() > 1,
@@ -30,7 +30,7 @@ def run_api(summoner_name: str, region: str) -> List[Player]:
     recent_players.sort(reverse=True, key=lambda player: player.get_total_games_played())
     return recent_players
 
-
+"""
 if __name__ == "__main__":
     # run_api("Minez", "na1")
     players = run_api("Minez", "na1")
