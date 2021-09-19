@@ -75,14 +75,29 @@ function App() {
   const handle_submit= async (evt)=>{
     evt.preventDefault();
 
+    console.log(region)
+    const data = await axios(`http://localhost:5000/${region}/${summoner_name}`)
+    //console.log(data)
+    //alert(data.data[0])
+    var entries = data.data.to_return.length
+    var i = 0
+    var paragraph = document.getElementById("spam_and_fun")
+    paragraph.innterText = ""
+    while (i < entries) {
+      console.log(data.data.to_return[i])
+      paragraph.innterText += ('\n' + data.data.to_return[i] + '\n')
+
+      i++
+    }
 
 
-    const data = await axios(`http://localhost:5000/na1/${summoner_name}`)
-    console.log(data.data)
-  
+
   }
 
   return (
+    <h1>
+
+    
     <Form onSubmit={handle_submit}
     class="ui_form">
       <Form.Field>
@@ -97,7 +112,9 @@ function App() {
       <FormDropdown
         options={region_options}
         id="region_selection"
-        onChange= {region=>set_region(region.target.value)}
+        onChange= {(region,{value})=>
+          set_region(value)}
+
       >
       </FormDropdown>
     <Form.Field>
@@ -110,6 +127,12 @@ function App() {
       </Button>
     </Form.Field>
     </Form>
+      <body>
+        <p id="spam_and_fun">
+
+        </p>
+      </body>
+    </h1>
     
 
 
